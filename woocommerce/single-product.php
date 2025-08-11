@@ -56,7 +56,7 @@ get_header(); ?>
             <div class="product-affirmation">
                 <div class="affirmation-content">
                     <h3><?php esc_html_e('Today\'s Affirmation', 'auntie-map'); ?></h3>
-                    <blockquote>"<?php echo esc_html(auntie_map_get_daily_affirmation()); ?>"</blockquote>
+                    <blockquote>"<?php echo function_exists('auntie_map_get_daily_affirmation') ? esc_html(auntie_map_get_daily_affirmation()) : esc_html__('Every day is a victory!', 'auntie-map'); ?>"</blockquote>
                     <p><em><?php esc_html_e('Remember: You are stronger than you think, and every day is a new opportunity for growth.', 'auntie-map'); ?></em></p>
                 </div>
             </div>

@@ -865,11 +865,72 @@ function auntie_map_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'auntie_map_excerpt_more');
 
+
+function auntie_map_woocommerce_setup() {
+        // Only run if WooCommerce is active
+        if (!class_exists('WooCommerce')) {
+            return;
+        }
+
+        add_theme_support('woocommerce', array(
+            'thumbnail_image_width' => 300,
+            'single_image_width'    => 600,
+            'product_grid'          => array(
+                'default_rows'    => 4,
+                'min_rows'        => 2,
+                'max_rows'        => 8,
+                'default_columns' => 3,
+                'min_columns'     => 2,
+                'max_columns'     => 5,
+            ),
+        ));
+
+        // Add support for WC features
+        add_theme_support('wc-product-gallery-zoom');
+        add_theme_support('wc-product-gallery-lightbox');
+        add_theme_support('wc-product-gallery-slider');
+    }
+
+    add_action('after_setup_theme', 'auntie_map_woocommerce_setup');
+
 /**
- * Include WooCommerce compatibility file
+ * WooCommerce compatibility functions
  */
-if (!defined('AUNTIE_MAP_WOOCOMMERCE_LOADED')) {
-    define('AUNTIE_MAP_WOOCOMMERCE_LOADED', true);
-    require_once get_template_directory() . '/woocommerce.php';
-}
+// DISABLED - causes blank page
+// if (class_exists('WooCommerce')) {
+//     // Add WooCommerce theme support
+//     add_action('after_setup_theme', function() {
+//         add_theme_support('woocommerce', array(
+//             'thumbnail_image_width' => 300,
+//             'single_image_width'    => 600,
+//             'product_grid'          => array(
+//                 'default_rows'    => 4,
+//                 'min_rows'        => 2,
+//                 'max_rows'        => 8,
+//                 'default_columns' => 3,
+//                 'min_columns'     => 2,
+//                 'max_columns'     => 5,
+//             ),
+//         ));
+//
+//         // Add support for WC features
+//         add_theme_support('wc-product-gallery-zoom');
+//         add_theme_support('wc-product-gallery-lightbox');
+//         add_theme_support('wc-product-gallery-slider');
+//     });
+//
+
+
+/**
+ * Disable WooCommerce default stylesheets
+ */
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+/**
+ * Enqueue WooCommerce CSS file
+ */
+add_action('wp_enqueue_scripts', function() {
+    // Make sure this loads AFTER the main theme stylesheet so CSS variables are available
+    wp_enqueue_style('auntie-map-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array('auntie-map-style'), '1.0.0');
+});
 ?>

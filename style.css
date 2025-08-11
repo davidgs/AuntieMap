@@ -92,12 +92,18 @@ a:hover {
 
 /* Header Layout Fixes */
 .site-header {
-    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-purple) 100%);
-    color: var(--white);
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1000;
+    background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%) !important;
+    color: #FFFFFF !important;
+    padding: 1rem 0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+    z-index: 1000 !important;
+}
+
+/* Force site title text to be white */
+.site-title,
+.site-title a {
+    color: #FFFFFF !important;
 }
 
 .header-content {
@@ -120,7 +126,7 @@ a:hover {
 .site-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--white);
+    color: #FFFFFF;
     text-decoration: none;
     margin: 0;
 }
@@ -206,7 +212,7 @@ img.custom-logo {
 .site-title {
     font-size: 1.5rem !important;
     font-weight: 700 !important;
-    color: var(--white) !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
     margin: 0 !important;
     display: block !important;
@@ -236,7 +242,7 @@ img.custom-logo {
 }
 
 .main-navigation a {
-    color: var(--white) !important;
+    color: #FFFFFF !important;
     font-weight: 500 !important;
     padding: 0.5rem 1rem !important;
     border-radius: 0.375rem !important;
@@ -266,17 +272,25 @@ img.custom-logo {
     display: flex !important;
     align-items: center !important;
     text-decoration: none !important;
-    color: var(--white) !important;
+    color: #FFFFFF !important;
     padding: 0.5rem !important;
     border-radius: 0.375rem !important;
     transition: all 0.3s ease !important;
 }
 
 .cart-icon {
-    font-size: 1.25rem !important;
-    color: var(--white) !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    font-size: 1.5rem !important;
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
     margin-right: 0.5rem !important;
+    font-weight: bold !important;
+}
+
+/* Force cart icon to be white with maximum specificity */
+.site-header .header-cart .cart-link .cart-icon,
+.cart-icon {
+    color: #FFFFFF !important;
+    filter: brightness(0) invert(1) !important;
 }
 
 .cart-count {
