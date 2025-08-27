@@ -352,7 +352,7 @@ function auntie_map_customize_register($wp_customize) {
         // Custom description setting
         $wp_customize->add_setting('auntie_map_' . $card_key . '_description', array(
             'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
+            'sanitize_callback' => 'wp_kses_post',
         ));
 
         $wp_customize->add_control('auntie_map_' . $card_key . '_description', array(
@@ -396,7 +396,7 @@ function auntie_map_customize_register($wp_customize) {
 
     $wp_customize->add_setting('auntie_map_features_section_description', array(
         'default'           => 'Every purchase supports recovery communities and helps fund resources for those in need.',
-        'sanitize_callback' => 'sanitize_textarea_field',
+        'sanitize_callback' => 'wp_kses_post',
     ));
 
     $wp_customize->add_control('auntie_map_features_section_description', array(
@@ -424,21 +424,29 @@ function auntie_map_get_feature_cards() {
             'icon' => '🎗️',
             'title' => __('Meaningful Merchandise', 'auntie-map'),
             'description' => __('Carefully curated items that celebrate recovery milestones and inspire daily strength.', 'auntie-map'),
+            'image' => '',
+            'link' => '',
         ),
         'community_support' => array(
             'icon' => '🤝',
             'title' => __('Community Support', 'auntie-map'),
             'description' => __('Connect with others on similar journeys and share stories of hope and healing.', 'auntie-map'),
+            'image' => '',
+            'link' => '',
         ),
         'recovery_resources' => array(
             'icon' => '📚',
             'title' => __('Recovery Resources', 'auntie-map'),
             'description' => __('Access to meeting finders, support hotlines, and educational materials.', 'auntie-map'),
+            'image' => '',
+            'link' => '',
         ),
         'give_back' => array(
             'icon' => '💜',
             'title' => __('Give Back', 'auntie-map'),
             'description' => __('Every purchase helps fund recovery programs and support services for those in need.', 'auntie-map'),
+            'image' => '',
+            'link' => '',
         ),
     );
 
@@ -451,6 +459,8 @@ function auntie_map_get_feature_cards() {
                 'icon' => get_theme_mod('auntie_map_' . $card_key . '_icon', $default_data['icon']),
                 'title' => get_theme_mod('auntie_map_' . $card_key . '_title', $default_data['title']),
                 'description' => get_theme_mod('auntie_map_' . $card_key . '_description', $default_data['description']),
+                'image' => get_theme_mod('auntie_map_' . $card_key . '_image', $default_data['image']),
+                'link' => get_theme_mod('auntie_map_' . $card_key . '_link', $default_data['link']),
             );
 
             // Use defaults if custom values are empty

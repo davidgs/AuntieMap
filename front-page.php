@@ -56,16 +56,35 @@ if (!empty($feature_cards)) :
 <section id="recovery-features" class="recovery-features">
     <div class="container">
         <div class="section-header">
-            <h2><?php echo esc_html(get_theme_mod('auntie_map_features_section_title', __('Supporting Your Recovery Journey', 'auntie-map'))); ?></h2>
-            <p><?php echo esc_html(get_theme_mod('auntie_map_features_section_description', __('Every purchase supports recovery communities and helps fund resources for those in need.', 'auntie-map'))); ?></p>
+            <h2><?php echo wp_kses_post(get_theme_mod('auntie_map_features_section_title', __('Supporting Your Recovery Journey', 'auntie-map'))); ?></h2>
+            <p><?php echo wp_kses_post(get_theme_mod('auntie_map_features_section_description', __('Every purchase supports recovery communities and helps fund resources for those in need.', 'auntie-map'))); ?></p>
         </div>
 
         <div class="features-grid" data-card-count="<?php echo count($feature_cards); ?>">
             <?php foreach ($feature_cards as $card_key => $card_data) : ?>
-                <div class="feature-card" data-card="<?php echo esc_attr($card_key); ?>">
-                    <div class="feature-icon"><?php echo esc_html($card_data['icon']); ?></div>
-                    <h3><?php echo esc_html($card_data['title']); ?></h3>
-                    <p><?php echo esc_html($card_data['description']); ?></p>
+                <div class="feature-card" data-card="<?php echo wp_kses_post($card_key); ?>">
+                    <?php if (!empty($card_data['image'])) : ?>
+                        <div class="feature-image">
+                            <img src="<?php echo wp_kses_post($card_data['image']); ?>" alt="<?php echo wp_kses_post($card_data['title']); ?>">
+                        </div>
+                    <?php else : ?>
+                        <div class="feature-icon"><?php echo wp_kses_post($card_data['icon']); ?></div>
+                    <?php endif; ?>
+
+                    <h3><?php echo wp_kses_post($card_data['title']); ?></h3>
+
+                    <?php if (!empty($card_data['link'])) : ?>
+                        <div class="feature-description">
+                            <?php echo wp_kses_post($card_data['description']); ?>
+                        </div>
+                        <a href="<?php echo wp_kses_post($card_data['link']); ?>" class="feature-link" target="_blank" rel="noopener">
+                            <?php esc_html_e('Learn More', 'auntie-map'); ?>
+                        </a>
+                    <?php else : ?>
+                        <div class="feature-description">
+                            <?php echo wp_kses_post($card_data['description']); ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>

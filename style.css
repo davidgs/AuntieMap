@@ -447,6 +447,47 @@ img.custom-logo {
     font-size: 1.5rem;
 }
 
+.feature-image {
+    margin: 0 auto 1rem;
+    max-width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.feature-description {
+    margin-bottom: 1rem;
+}
+
+.feature-description p {
+    margin-bottom: 0.5rem;
+}
+
+.feature-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.feature-link:hover {
+    background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
 /* WooCommerce Styles */
 .woocommerce .products {
     display: grid;
